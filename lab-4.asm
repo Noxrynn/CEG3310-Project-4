@@ -158,3 +158,18 @@ SQUARE_DONE
         ADD  R6, R6, #1
 
 RET
+
+ARRAY
+        .FILL #2
+        .FILL #3
+        .FILL #5
+        .FILL #0
+        .FILL #1
+
+ARRAY_SIZE
+        .FILL #5
+
+STACK_BASE
+        .FILL xF000
+
+.END
