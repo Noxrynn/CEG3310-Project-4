@@ -1,3 +1,5 @@
+.ORIG x3000
+
 MAIN
         ;Initialize pointers
         LD   R6, STACK_BASE
@@ -23,7 +25,7 @@ MAIN
         ADD  R6, R6, #-1
         STR  R0, R6, #0
 
-        HALT
+HALT
 
 SUM_OF_SQUARES
         ;Save the return address and previous pointer
@@ -53,7 +55,7 @@ SUM_LOOP
         LDR  R1, R5, #3        ; R1 = arraySize
 
         ;Calculate counter - arraySize
-        NOT  R2, R1, #0
+        NOT  R2, R1
         ADD  R2, R2, #1
         ADD  R2, R0, R2
 
@@ -102,7 +104,7 @@ SUM_DONE
 
 RET
 
-        SQUARE
+SQUARE
         ADD  R6, R6, #-1
         STR  R7, R6, #0
 
@@ -116,13 +118,14 @@ RET
 
         ;Load x into R1 and use R2 as the repetition counter
         LDR  R1, R5, #2
-        LDR  R2, R5, #2
+        LDR  R2, R1, #0
 
         ;Convert the counter to its absolute value.
-        ;This also allows negative inputs for ordinary cases.
-        ADD  R2, R2, #0
+
         BRzp SQUARE_COUNT_READY
-        NOT  R2, R2, #0
+        NOT  R1, R1
+        ADD  R1, R1, #1
+        NOT  R2, R2
         ADD  R2, R2, #1
 
 
